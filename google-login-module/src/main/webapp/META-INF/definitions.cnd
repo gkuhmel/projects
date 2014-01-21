@@ -1,0 +1,6 @@
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+
+[jnt:googleplusConnect] > jnt:content, jmix:socialComponent
+[jnt:googleplusInformation] > jnt:content, jmix:socialComponent
+[jnt:googleplusActivities] > jnt:content, jmix:socialComponent

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+       
+    <bean id="GooglePlusAuthValve" class="org.jahia.params.valves.GooglePlusAuthValveImpl"></bean>
+    
+    <bean id="GoogleAPIClient" class="fr.gkuhmel.jahia.modules.googleplus.GoogleAPIClient">          
+        <property name="clientId" value=""/>
+        <property name="clientSecret" value=""/>
+        <property name="redirectUri" value="http://localhost:8080/cms/render/live/fr/sites/google/home.html"/>
+        <property name="permissionList" value="https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/plus.login+https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email"/> 
+                
+        <property name="proxy" value="false"/>
+        <property name="httpProxyURL" value=""/>
+        <property name="httpProxyPort" value=""/>
+        <property name="httpProxyLogin" value=""/>
+        <property name="httpProxyPassword" value=""/>
+    </bean>
+       
+    <bean id="JahiaUserManagerGooglePlusProvider" class="org.jahia.services.usermanager.JahiaUserManagerGooglePlusProvider" parent="JahiaUserManagerProvider">
+        <property name="key" value="googleplus"/>
+        <property name="priority" value="4"/>
+        <property name="cacheService" ref="JahiaCacheService"/>
+        <property name="defaultProvider" value="false"/>
+        <property name="readOnly" value="true"/>
+        <property name="jcrUserManagerProvider" ref="JCRUserManagerProvider"/>    
+        <property name="googleProperties">
+            <map>
+                <entry key="access_token.attribute.map" value="true"/>           							
+            </map>
+        </property>
+    </bean>
+
+</beans>
